@@ -10,9 +10,11 @@ const startServer = async () => {
     logger.info('Database connection established successfully.');
 
     const PORT = config.port;
-    app.listen(PORT, () => {
-      logger.info(`Server running in ${config.nodeEnv} mode on port ${PORT}`);
-    });
+    if (!process.env.VERCEL) {
+      app.listen(PORT, () => {
+        logger.info(`Server running in ${config.nodeEnv} mode on port ${PORT}`);
+      });
+    }
   } catch (error) {
     logger.error('Failed to start the server due to database connection error:', error);
     process.exit(1);
@@ -20,3 +22,5 @@ const startServer = async () => {
 };
 
 startServer();
+
+export default app;

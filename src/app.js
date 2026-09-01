@@ -8,7 +8,10 @@ import apiRouter from './routes/index.js';
 const app = express();
 
 // Base Middlewares
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173', process.env.FRONTEND_URL].filter(Boolean),
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
