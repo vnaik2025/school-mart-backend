@@ -1,0 +1,673 @@
+{
+  "info": {
+    "name": "School Accessories Mart API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Auth Module",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"newuser@example.com\",\n  \"phone\": \"9000000010\",\n  \"password\": \"SecurePass123!\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"role\": \"CUSTOMER\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"customer@example.com\",\n  \"password\": \"Customer@123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Customer Module",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/customers/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["customers", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe Updated\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customers/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["customers", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Add Address",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"John Doe\",\n  \"phone\": \"9000000010\",\n  \"address_line_1\": \"123 Main St\",\n  \"city\": \"Pune\",\n  \"state\": \"Maharashtra\",\n  \"postal_code\": \"411001\",\n  \"country\": \"India\",\n  \"is_default\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customers/address",
+              "host": ["{{baseUrl}}"],
+              "path": ["customers", "address"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. School Module",
+      "item": [
+        {
+          "name": "List Schools",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"search\": \"\",\n  \"sort\": {\n    \"field\": \"display_order\",\n    \"order\": \"ASC\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/schools/list",
+              "host": ["{{baseUrl}}"],
+              "path": ["schools", "list"]
+            }
+          }
+        },
+        {
+          "name": "Create School",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New Academy\",\n  \"address\": \"789 College Rd\",\n  \"contact_number\": \"9876543210\",\n  \"email\": \"contact@newacademy.edu\",\n  \"display_order\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/schools",
+              "host": ["{{baseUrl}}"],
+              "path": ["schools"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Category Module",
+      "item": [
+        {
+          "name": "List Categories",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sort\": {\n    \"field\": \"display_order\",\n    \"order\": \"ASC\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/categories/list",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories", "list"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Uniform Module",
+      "item": [
+        {
+          "name": "List Uniforms",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": {\n    \"school_id\": 4\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/uniforms/list",
+              "host": ["{{baseUrl}}"],
+              "path": ["uniforms", "list"]
+            }
+          }
+        },
+        {
+          "name": "Get Uniform Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/uniforms/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["uniforms", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Cart Module",
+      "item": [
+        {
+          "name": "Get Cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/cart",
+              "host": ["{{baseUrl}}"],
+              "path": ["cart"]
+            }
+          }
+        },
+        {
+          "name": "Add Item to Cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"variant_id\": 1,\n  \"school_id\": 4,\n  \"quantity\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/cart/items",
+              "host": ["{{baseUrl}}"],
+              "path": ["cart", "items"]
+            }
+          }
+        },
+        {
+          "name": "Clear Cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/cart",
+              "host": ["{{baseUrl}}"],
+              "path": ["cart"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Order Module",
+      "item": [
+        {
+          "name": "Checkout Order",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
+            }
+          }
+        },
+        {
+          "name": "List Orders",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": {\n    \"status\": \"PENDING_PAYMENT\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders/list",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "list"]
+            }
+          }
+        },
+        {
+          "name": "Get Order Details",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "8. Payment Module",
+      "item": [
+        {
+          "name": "Simulate Payment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"outcome\": \"SUCCESS\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payments/2/simulate",
+              "host": ["{{baseUrl}}"],
+              "path": ["payments", "2", "simulate"]
+            }
+          }
+        },
+        {
+          "name": "Get Payment Details",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payments/2",
+              "host": ["{{baseUrl}}"],
+              "path": ["payments", "2"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "9. Delivery Module",
+      "item": [
+        {
+          "name": "Initiate Delivery",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"courier_name\": \"FastTrack\",\n  \"tracking_number\": \"FT1234567890\",\n  \"tracking_url\": \"https://fasttrack.com/track\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/deliveries/2",
+              "host": ["{{baseUrl}}"],
+              "path": ["deliveries", "2"]
+            }
+          }
+        },
+        {
+          "name": "Update Delivery Status",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"DISPATCHED\",\n  \"remarks\": \"Package has left the facility\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/deliveries/2",
+              "host": ["{{baseUrl}}"],
+              "path": ["deliveries", "2"]
+            }
+          }
+        },
+        {
+          "name": "Get Tracking Info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/deliveries/2",
+              "host": ["{{baseUrl}}"],
+              "path": ["deliveries", "2"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "10. Dashboard & Audit",
+      "item": [
+        {
+          "name": "Dashboard Statistics",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/dashboard/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["dashboard", "stats"]
+            }
+          }
+        },
+        {
+          "name": "Recent Activities",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/dashboard/recent",
+              "host": ["{{baseUrl}}"],
+              "path": ["dashboard", "recent"]
+            }
+          }
+        },
+        {
+          "name": "List Audit Logs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"page\": 1,\n  \"limit\": 10\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/audit/list",
+              "host": ["{{baseUrl}}"],
+              "path": ["audit", "list"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

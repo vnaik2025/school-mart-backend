@@ -1,0 +1,538 @@
+Below is a high-level **Project Feature Summary** that you can share directly with your frontend developer. It explains **what the system does**, **what screens are needed**, and **what APIs the frontend can expect**.
+
+---
+
+# School Accessories Mart
+
+## Project Feature Summary
+
+## Project Overview
+
+School Accessories Mart is an e-commerce platform for selling school uniforms and accessories.
+
+The platform has two user roles:
+
+* Customer
+* Admin
+
+Customers can browse uniforms based on their school, add products to a cart, place orders, and track deliveries.
+
+Admins manage schools, products, categories, orders, and deliveries.
+
+---
+
+# User Roles
+
+## Customer
+
+Customers can:
+
+* Register
+* Login
+* Manage Profile
+* Manage Delivery Addresses
+* Select School
+* Browse Uniforms
+* View Product Details
+* Add Products to Cart
+* Update Cart
+* Checkout
+* Simulate Payment
+* View Orders
+* Track Deliveries
+
+---
+
+## Admin
+
+Admins can:
+
+* Manage Schools
+* Manage Categories
+* Manage Uniforms
+* Assign Uniforms to Schools
+* Manage Product Variants
+* Upload Product Images
+* Manage Orders
+* Update Order Status
+* Manage Deliveries
+* View Audit Logs
+
+---
+
+# Authentication Module
+
+Features
+
+* Customer Registration
+* Customer Login
+* Admin Login
+* JWT Authentication
+* Refresh Token Authentication
+* Logout
+* Logout All Devices
+* Forgot Password (Future)
+* Reset Password (Future)
+
+---
+
+# User Profile Module
+
+Customer Features
+
+* View Profile
+* Update Profile
+* Upload Profile Image
+* Change Password
+
+---
+
+# Address Module
+
+Customer Features
+
+* Add Address
+* Edit Address
+* Delete Address (Soft Delete)
+* Set Default Address
+* View All Addresses
+
+Multiple delivery addresses are supported.
+
+---
+
+# School Module
+
+Customer Features
+
+* View Available Schools
+* Select School
+
+Admin Features
+
+* Create School
+* Update School
+* Archive School
+* Upload School Logo
+* Activate / Deactivate School
+
+---
+
+# Category Module
+
+Admin Features
+
+* Create Category
+* Update Category
+* Archive Category
+* Activate / Deactivate Category
+
+Customer Features
+
+* Browse Categories
+
+Examples
+
+* Shirts
+* Pants
+* Sweaters
+* Shoes
+* Belts
+* Socks
+
+---
+
+# Uniform Module
+
+Admin Features
+
+* Create Uniform
+* Update Uniform
+* Archive Uniform
+* Manage SKU
+* Assign Category
+
+Customer Features
+
+* Browse Uniforms
+* View Uniform Details
+
+---
+
+# Uniform Variant Module
+
+Each uniform supports multiple variants.
+
+Example
+
+White Shirt
+
+* Size 28
+* Size 30
+* Size 32
+
+Each variant has
+
+* Price
+* Gender
+* Size
+
+Admin Features
+
+* Add Variant
+* Edit Variant
+* Archive Variant
+
+---
+
+# Product Image Module
+
+Admin Features
+
+* Upload Images
+* Delete Images
+* Reorder Images
+* Set Thumbnail
+
+Customer Features
+
+* View Product Images
+
+Storage
+
+Amazon S3
+
+---
+
+# School Product Assignment
+
+Admins can assign products to multiple schools.
+
+Example
+
+White Shirt
+
+↓
+
+Available in
+
+* DPS
+* KV
+* Ryan International
+
+This allows one product to be shared across multiple schools.
+
+---
+
+# Product Browsing
+
+Customers can
+
+* Browse by School
+* Browse by Category
+* Search Products
+* View Product Details
+* View Available Sizes
+* View Prices
+
+---
+
+# Shopping Cart
+
+Customer Features
+
+* Add Product
+* Remove Product
+* Update Quantity
+* Clear Cart
+* View Cart Summary
+
+Cart Rules
+
+* One active cart
+* One school per cart
+* Multiple products
+* Automatic total calculation
+
+---
+
+# Checkout
+
+Checkout includes
+
+* Address Selection
+* Order Summary
+* Price Calculation
+* Payment
+* Order Creation
+
+Validation
+
+* Active school
+* Active product
+* Active variant
+
+---
+
+# Payment Module
+
+Version 1
+
+Simulated Payment
+
+Possible Results
+
+* Success
+* Failure
+* Cancelled
+
+Future
+
+* Razorpay
+* Stripe
+
+---
+
+# Order Module
+
+Customer Features
+
+* View Orders
+* View Order Details
+* Cancel Order (Before Dispatch)
+
+Admin Features
+
+* View Orders
+* Update Order Status
+
+Order Status
+
+* Draft
+* Pending Payment
+* Confirmed
+* Received
+* Preparing
+* Dispatched
+* Delivered
+* Cancelled
+
+---
+
+# Delivery Module
+
+Admin Features
+
+* Assign Courier
+* Update Tracking Number
+* Update Delivery Status
+
+Customer Features
+
+* Track Delivery
+* View Courier
+* View Tracking Number
+
+Delivery Timeline
+
+* Preparing
+* Packed
+* Dispatched
+* In Transit
+* Out For Delivery
+* Delivered
+
+---
+
+# Media Module
+
+Generic media management for
+
+* Product Images
+* School Logos
+* Customer Profile Images
+
+Future
+
+* Documents
+* Certificates
+
+---
+
+# Search & Filtering
+
+Customers can filter by
+
+* School
+* Category
+* Product Name
+* Size
+* Gender
+
+Admins can search by
+
+* SKU
+* Product Name
+* School
+* Category
+* Order Number
+* Customer
+
+---
+
+# Order History
+
+Customers can
+
+* View Previous Orders
+* View Purchased Products
+* View Payment Status
+* View Delivery Status
+
+Historical orders remain unchanged even if products or customer information change.
+
+---
+
+# Audit Logging
+
+Admin Only
+
+Logs actions such as
+
+* Login
+* Logout
+* Product Creation
+* Product Update
+* School Management
+* Order Status Changes
+* Payment Events
+* Delivery Updates
+
+---
+
+# Notifications (Future)
+
+Email Notifications
+
+* Order Confirmation
+* Payment Confirmation
+* Delivery Updates
+
+SMS Notifications
+
+WhatsApp Notifications
+
+---
+
+# Security Features
+
+* JWT Authentication
+* Refresh Tokens
+* Password Hashing (bcrypt)
+* Role-Based Access Control
+* Soft Delete
+* Audit Logging
+* Input Validation
+
+---
+
+# Admin Dashboard
+
+Dashboard can display
+
+* Total Customers
+* Total Schools
+* Total Products
+* Total Orders
+* Pending Orders
+* Delivered Orders
+* Revenue
+* Recent Orders
+
+---
+
+# Customer Journey
+
+1. Register
+2. Login
+3. Complete Profile
+4. Add Delivery Address
+5. Select School
+6. Browse Uniforms
+7. View Product
+8. Select Size
+9. Add to Cart
+10. Checkout
+11. Simulate Payment
+12. Order Confirmation
+13. Track Delivery
+14. View Order History
+
+---
+
+# Admin Journey
+
+1. Login
+2. Manage Schools
+3. Manage Categories
+4. Create Uniforms
+5. Add Variants
+6. Upload Images
+7. Assign Uniforms to Schools
+8. Receive Orders
+9. Update Order Status
+10. Manage Deliveries
+11. View Audit Logs
+
+---
+
+# Technology Stack
+
+### Backend
+
+* Express.js
+* Sequelize ORM
+* PostgreSQL
+* JWT Authentication
+* bcrypt
+* Amazon S3
+
+### Frontend
+
+* React.js
+* Redux Toolkit / Context API
+* React Router
+* Axios
+
+### Deployment
+
+* Docker
+* Nginx
+* AWS (Future)
+
+---
+
+## Estimated Modules
+
+| Module             | Customer |    Admin    |
+| ------------------ | :------: | :---------: |
+| Authentication     |     ✅    |      ✅      |
+| Profile            |     ✅    |      ❌      |
+| Addresses          |     ✅    |      ❌      |
+| Schools            |   View   |     CRUD    |
+| Categories         |   View   |     CRUD    |
+| Uniforms           |   View   |     CRUD    |
+| Variants           |   View   |     CRUD    |
+| Media              |   View   |     CRUD    |
+| School Assignments |     ❌    |     CRUD    |
+| Cart               |     ✅    |      ❌      |
+| Checkout           |     ✅    |      ❌      |
+| Payments           |     ✅    | View/Manage |
+| Orders             |   View   |    Manage   |
+| Delivery Tracking  |   View   |    Manage   |
+| Audit Logs         |     ❌    |     View    |
+| Dashboard          |     ❌    |      ✅      |
+
+---
+
+This summary gives the frontend team a clear picture of the application's scope, the expected screens, and the functionality available to each user role without exposing backend implementation details.
