@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize';
+import pg from 'pg';
 import { config } from './environment.js';
 import { logger } from '../utils/logger.js';
 
@@ -10,6 +11,7 @@ const sequelize = new Sequelize(
     host: config.db.host,
     port: config.db.port,
     dialect: 'postgres',
+    dialectModule: pg,
     logging: (msg) => logger.debug(msg),
     define: {
       timestamps: true,
