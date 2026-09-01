@@ -12,6 +12,14 @@ const sequelize = new Sequelize(
     port: config.db.port,
     dialect: 'postgres',
     dialectModule: pg,
+    ...(config.db.ssl && {
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false
+        }
+      }
+    }),
     logging: (msg) => logger.debug(msg),
     define: {
       timestamps: true,
