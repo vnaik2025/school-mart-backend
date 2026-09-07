@@ -8,6 +8,7 @@
     "dev": "nodemon index.js",
     "migrate": "node src/migration-query/migrate.js",
     "seed": "node src/seeders/seed.js",
+    "seed:dummy": "node src/seeders/dummy-seed.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -30,6 +31,7 @@
     "uuid": "^14.0.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.9.0",
     "nodemon": "^3.1.14"
   }
 }
