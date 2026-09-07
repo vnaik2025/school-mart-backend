@@ -58,11 +58,28 @@ export const getRecentActivities = async () => {
     include: [{ model: db.Order, attributes: ['order_number'] }]
   });
 
-  return {
-    recentOrders,
-    recentPayments,
-    recentDeliveries
-  };
+  const activities = [
+    ...recentOrders.map(o => ({
+      id: `ord_${o.id}`,
+      type: 'ORDER',
+      description: `New order ${o.order_number} placed`,
+      timestamp: o.created_at
+    })),
+    ...recentPayments.map(p => ({
+      id: `pay_${p.id}`,
+      type: 'PAYMENT',
+      description: `Payment of ${p.amount} received`,
+      timestamp: p.created_at
+    })),
+    ...recentDeliveries.map(d => ({
+      id: `del_${d.id}`,
+      type: 'DELIVERY',
+      description: `Delivery status updated to ${d.delivery_status}`,
+      timestamp: d.created_at
+    }))
+  ].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)).slice(0, 15);
+
+  return activities;
 };
 
 export default {
